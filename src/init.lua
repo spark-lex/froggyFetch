@@ -1,10 +1,23 @@
+type Results = {
+    CPU: string, GPU: string, RAM: string,
+    GPU_DRIVER: string, DEVICE_SHADING_LANG: string,
+    CURRENT_PLATFORM: string, SOUND_OUTPUT_DEVICES: Array,
+    CAMERA_ACTIVE: boolean | string, CAMERA_DEVICES: Array,
+}
+
+type FroggyFetch = {
+    decodeHex: (string) -> string,
+    recursive: (table) -> string,
+    get: (table, string) -> Results,
+}
+
 local logService     = game:GetService("LogService");
 local soundService   = game:GetService("SoundService");
 local userInput      = game:GetService("UserInputService");
 local videoCapture   = game:GetService("VideoCaptureService");
 local getHttpResults = logService.GetHttpResultHistory;
 
-local froggyFetch = {}; do
+local froggyFetch: FroggyFetch = {}; do
     local gsub, format, char       = string.gsub, string.format, string.char;
     local tostring, find, tonumber = tostring, string.find, tonumber;
     
